@@ -4,3 +4,24 @@
  -ms-user-select: none;
  user-select: none;
 }
+
+.tab-container {
+ display: flex;
+}
+
+.tab {
+ background-color: #f1f1f1;
+ border: 1px solid #ccc;
+ padding: 10px 20px;
+ cursor: pointer;
+}
+
+.tab-content {
+ display: none;
+ padding: 20px;
+ border: 1px solid #ccc;
+}
+
+.tab-content.active {
+ display: block;
+}
