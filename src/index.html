@@ -10,11 +10,15 @@
     <section class="order-section">
 
         <div class="product-addition">
-            <input class="addition-input" type="text">
+            <label>
+                <input class="addition-input" type="text">
+            </label>
 
             <div class="product-quantity-editor">
                 <button class="product-quantity-increment">+</button>
-                <input class="addition-input-quantity" type="number" min="1" value="1">
+                <label>
+                    <input class="addition-input-quantity" type="number" min="1" value="1">
+                </label>
                 <button class="product-quantity-decrement">-</button>
             </div>
 
@@ -42,11 +46,11 @@
         </div>
     </section>
     <section class="receipt-section">
-        <button class="profile">Profile</button>
+        <button data-key="settings" class="profile"></button>
         <div class="receipt">
             <header class="receipt-header">
-                <h2>RECEIPT</h2>
-                <h3>Logo</h3>
+                <h2 data-key="receipt"></h2>
+                <h3 data-key="shop-name"></h3>
             </header>
             <div class="products">
                 <table class="products-table">
@@ -74,7 +78,7 @@
 </main>
 <script src="render.js"></script>
 <script src="utilities/locale.js"></script>
-<script type="module" src="./functions/counter.js"></script>
+<script type="module" src="utilities/counter.js"></script>
 <script type="module" src="root.js"></script>
 </body>
 </html>

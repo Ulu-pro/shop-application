@@ -8,16 +8,17 @@ CREATE TABLE `products`
 CREATE TABLE `prices`
 (
     `id`             INTEGER PRIMARY KEY,
-    `product_id`     INTEGER NOT NULL,
-    `value`          INTEGER NOT NULL,
+    `product_id`     INTEGER   NOT NULL,
+    `value`          INTEGER   NOT NULL,
     `effective_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
 );
 
 CREATE TABLE `orders`
 (
-    `id`           INTEGER PRIMARY KEY,
-    `order_date`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `id`              INTEGER PRIMARY KEY,
+    `is_paid_by_card` INTEGER   NOT NULL,
+    `order_date`      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `order_items`

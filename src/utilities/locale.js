@@ -24,6 +24,10 @@ fs.readFile('./preferences.json', 'utf8', (err, data) => {
           if (language[key]) {
             element.textContent = language[key];
           }
+
+          if (preferences[key]) {
+            element.textContent = preferences[key];
+          }
         });
       } catch (error) {
         console.error('Error parsing language file:', error);

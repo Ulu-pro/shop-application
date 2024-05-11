@@ -1,4 +1,4 @@
-import { decrement, increment } from './functions/counter.js';
+import { decrement, increment } from './utilities/counter.js';
 
 const historyTbody = document.querySelector(".history-products")
 const receiptTbody = document.querySelector(".receipt-row")
