@@ -1,45 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title data-key="title"></title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title data-key="title"></title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <table id="products">
-    <thead>
-    <tr>
-      <th data-key="id"></th>
-      <th data-key="name"></th>
-      <th data-key="barcode"></th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-  <div class="tab-container">
-    <button class="tab" onclick="openTab('tab1')">Tab 1</button>
-    <button class="tab" onclick="openTab('tab2')">Tab 2</button>
-    <button class="tab" onclick="openTab('tab3')">Tab 3</button>
-  </div>
+<main class="main">
+    <section class="order-section">
 
-  <div id="tab1" class="tab-content active">
-    <h3>Tab 1 Content</h3>
-    <p>This is the content of tab 1.</p>
-  </div>
+        <div class="product-addition">
+            <input class="addition-input" type="text">
 
-  <div id="tab2" class="tab-content">
-    <h3>Tab 2 Content</h3>
-    <p>This is the content of tab 2.</p>
-  </div>
+            <div class="product-quantity-editor">
+                <button class="product-quantity-increment">+</button>
+                <input class="addition-input-quantity" type="number" min="1" value="1">
+                <button class="product-quantity-decrement">-</button>
+            </div>
 
-  <div id="tab3" class="tab-content">
-    <h3>Tab 3 Content</h3>
-    <p>This is the content of tab 3.</p>
-  </div>
-
-  <script src="render.js"></script>
-  <script src="utilities/locale.js"></script>
-  <script src="utilities/tabs.js"></script>
+            <button class="addition-button" data-key="add"></button>
+        </div>
+        <div class="orders-history">
+            <table>
+                <thead>
+                <tr>
+                    <th data-key="id"></th>
+                    <th data-key="total-price"></th>
+                    <th data-key="quantity"></th>
+                    <th data-key="date"></th>
+                </tr>
+                </thead>
+                <tbody class="history-products">
+                <tr>
+                    <td>123</td>
+                    <td>100 000 USZ</td>
+                    <td>1</td>
+                    <td>2024-04-05 09:17:11</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="receipt-section">
+        <button class="profile">Profile</button>
+        <div class="receipt">
+            <header class="receipt-header">
+                <h2>RECEIPT</h2>
+                <h3>Logo</h3>
+            </header>
+            <div class="products">
+                <table class="products-table">
+                    <thead>
+                    <tr>
+                        <th data-key="name"></th>
+                        <th data-key="total-price"></th>
+                        <th data-key="quantity"></th>
+                    </tr>
+                    </thead>
+                    <tbody class="receipt-row"></tbody>
+                </table>
+                <div class="line"></div>
+                <div class="info">
+                    <div class="receipt-date">Time: 2024-04-05 09:17:11</div>
+                    <div class="total-price"></div>
+                </div>
+            </div>
+        </div>
+        <div class="payments">
+            <button class="cash-paid">Cash Pay</button>
+            <button class="card-paid">Card Pay</button>
+        </div>
+    </section>
+</main>
+<script src="render.js"></script>
+<script src="utilities/locale.js"></script>
+<script type="module" src="./functions/counter.js"></script>
+<script type="module" src="root.js"></script>
 </body>
 </html>
