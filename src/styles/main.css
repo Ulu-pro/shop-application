@@ -178,6 +178,7 @@ input::-webkit-inner-spin-button {
     width: 45%;
     height: 50px;
     background: #467e4a;
+    color: white;
     border: none;
     border-radius: 5px;
 }
@@ -186,6 +187,7 @@ input::-webkit-inner-spin-button {
     width: 45%;
     height: 50px;
     background: #4286bd;
+    color: white;
     border: none;
     border-radius: 5px;
 }

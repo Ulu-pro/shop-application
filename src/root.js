@@ -1,4 +1,5 @@
 import { decrement, increment } from './utilities/counter.js';
+import {price_format} from "./utilities/currency.js";
 
 const historyTbody = document.querySelector(".history-products")
 const receiptTbody = document.querySelector(".receipt-row")
@@ -28,7 +29,7 @@ addButton.addEventListener("click", () =>{
     const receiptRow = document.createElement("tr");
     historyRow.innerHTML = `
         <td>123</td>
-        <td>${4000 * quantityValue} USZ</td>
+        <td>${price_format(4000 * quantityValue)}</td>
         <td>${quantityValue}</td>
         <td>2024-05-08 09:16:54</td>
     `;
@@ -40,13 +41,12 @@ addButton.addEventListener("click", () =>{
     price += 4000 * quantityValue
     historyTbody.appendChild(historyRow);
     receiptTbody.appendChild(receiptRow)
-    totalPrice.innerHTML = `Price: ${price} USZ`
+    totalPrice.innerHTML = 'Итого: ' + price_format(price)
 })
 
 cashPainButton.addEventListener("click", () => {
     receiptTbody.innerHTML = ""
     price = 0
-    totalPrice.innerHTML = `Price: ${price} USZ`
-    quantityValue = 0
-    document.querySelector(".addition-input-quantity").value = quantityValue;
+    totalPrice.innerHTML = 'Итого: ' + price_format(price)
+    document.querySelector(".addition-input-quantity").value = 1;
 })
