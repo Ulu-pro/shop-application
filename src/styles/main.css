@@ -1,0 +1,191 @@
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.main {
+    padding: 10px;
+    display: flex;
+}
+
+.order-section {
+    margin: 10px;
+    padding: 10px;
+    width: 75%;
+    border-radius: 20px;
+    border: .5px solid black;
+}
+
+.receipt-section {
+    margin: 10px;
+    padding: 10px;
+    width: 25%;
+    border-radius: 20px;
+    border: .5px solid black;
+}
+
+.product-addition {
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    justify-content: space-around;
+}
+
+.product-quantity-editor {
+    display: flex;
+    align-items: center;
+}
+
+.addition-input {
+    width: 350px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.addition-input-quantity {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.product-quantity-increment, .product-quantity-decrement {
+    border-radius: 50%;
+    border: none;
+    padding: 10px;
+    height: 40px;
+    width: 40px;
+    background: #7c9cad;
+}
+
+.addition-button {
+    padding: 15px 20px;
+    border-radius: 10px;
+    background: #72a7c4;
+    border: none;
+}
+
+.orders-history {
+    width: 100%;
+    height: 80vh;
+    overflow: auto;
+}
+
+.orders-history table {
+    width: 100%;
+    text-align: center;
+}
+
+.orders-history table tbody tr {
+    background: #427e9f;
+    color: #fff;
+}
+
+.order-section table tbody tr td {
+    padding: 10px 0;
+}
+
+/* receipt-section */
+
+.profile {
+    width: 100%;
+    height: 40px;
+    background: #5a7280;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.receipt {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.receipt-header {
+    margin: 20px 0;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.products-table{
+    text-align: left;
+    width: 120%;
+    font-size: 16px;
+}
+
+.products-table thead tr th{
+    padding-bottom: 10px;
+}
+
+.line{
+    margin-top: 10px;
+    width: 130%;
+    height: .5px;
+    background: black;
+}
+
+.info{
+    margin-top: 20px;
+    display: block;
+    text-align: left;
+}
+
+.payments{
+    margin-top: 30px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payments .cash-paid{
+    width: 45%;
+    height: 50px;
+    background: #467e4a;
+    border: none;
+    border-radius: 5px;
+}
+
+.payments .card-paid{
+    width: 45%;
+    height: 50px;
+    background: #4286bd;
+    border: none;
+    border-radius: 5px;
+}
