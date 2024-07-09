@@ -1,4 +1,4 @@
-// const {db} = require('./utilities/database');
+const {db} = require('./utilities/database');
 
 // const tbody = document.querySelector('#products tbody');
 // tbody.innerHTML = '';

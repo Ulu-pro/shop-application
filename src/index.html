@@ -29,16 +29,14 @@
                 <thead>
                 <tr>
                     <th data-key="id"></th>
-                    <th data-key="total-price"></th>
-                    <th data-key="quantity"></th>
+                    <th data-key="cash-pay"></th>
                     <th data-key="date"></th>
                 </tr>
                 </thead>
                 <tbody class="history-products">
                 <tr>
                     <td>123</td>
-                    <td>100 000 USZ</td>
-                    <td>1</td>
+                    <td>Да</td>
                     <td>2024-04-05 09:17:11</td>
                 </tr>
                 </tbody>
@@ -46,7 +44,8 @@
         </div>
     </section>
     <section class="receipt-section">
-        <button data-key="settings" class="profile"></button>
+        <button data-key="add" class="profile"></button>
+        <button data-key="change" class="change"></button>
         <div class="receipt">
             <header class="receipt-header">
                 <h2 data-key="receipt"></h2>
@@ -61,12 +60,13 @@
                         <th data-key="quantity"></th>
                     </tr>
                     </thead>
-                    <tbody class="receipt-row"></tbody>
+                    <tbody class="receipt-row">
+                    </tbody>
                 </table>
                 <div class="line"></div>
                 <div class="info">
                     <div class="receipt-date"></div>
-                    <div class="total-price"></div>
+                    <div class="total-price">Итого: <span class="receipt-price">0</span></div>
                 </div>
             </div>
         </div>
