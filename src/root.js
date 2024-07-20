@@ -23,7 +23,7 @@ let isFirstOrderedItem = false
 
 // Functions -----------------------------------------------------------------------------
 
-function getName() {
+async function getName() {
     if (barcodeValue.value.length === 0) {
         barcodeValue.placeholder = "Nothing to add"
         addButton.disabled = true
@@ -31,7 +31,7 @@ function getName() {
         return;
     }
 
-    return new Promise((resolve, reject) => {
+    return await new Promise((resolve, reject) => {
         db.all('SELECT name, id FROM products WHERE barcode = ?', [barcodeValue.value], (error, rows) => {
             if (error) {
                 console.error(error)
@@ -52,7 +52,7 @@ function getName() {
 }
 
 function getPrice(id) {
-    return new Promise(async (res, rej) => {
+    return new Promise((res, rej) => {
         db.all('SELECT value FROM prices WHERE product_id = ?', [id], (error, rows) => {
             if (error) {
                 console.error(error)
@@ -77,22 +77,26 @@ async function addProductToReceipt() {
     const receiptRow = document.createElement("tr");
 
     let name = await getName()
-    console.log(name)
-    price = await getPrice(name[0].id) * quantityValue
-    console.log(price)
+    let priceValue = await getPrice(name[0].id) * quantityValue
 
-    receiptRow.innerHTML = `<td>${name[0].name}</td><td>${price}</td><td>${quantityValue}</td>`
+    receiptRow.innerHTML = `<td>${name[0].name}</td><td>${priceValue}</td><td>${quantityValue}</td>`
     receiptTbody.appendChild(receiptRow)
-    receiptPrice.innerHTML = `${totalPrice + parseInt(price)}`
-    totalPrice += price
+
+    totalPrice += priceValue
+    receiptPrice.innerHTML = `${totalPrice}`
 }
 
-function createOrder() {
-    db.run("INSERT INTO orders (is_paid_by_card) VALUES (?)", [0], (err) => {
-        if (err) {
-            console.error("Ошибка при добавлении продукта:", err);
-        }
-    })
+async function createOrder() {
+    await new Promise((resolve, reject) => {
+        db.run("INSERT INTO orders (is_paid_by_card) VALUES (?)", [0], (err) => {
+            if (err) {
+                console.error("Ошибка при добавлении продукта:", err);
+                reject(err);
+                return;
+            }
+            resolve();
+        });
+    });
 }
 
 // Listeners ---------------------------------------------------------------------------------
@@ -119,6 +123,7 @@ barcodeValue.addEventListener("input", (e) => {
         addButton.disabled = false
     }
 })
+
 db.all('SELECT id, is_paid_by_card, order_date FROM orders', (error, rows) =>{
     if (error) {
         console.error(error)
@@ -126,59 +131,56 @@ db.all('SELECT id, is_paid_by_card, order_date FROM orders', (error, rows) =>{
     }
     for (let i = 0; i < rows.length; i++) {
         const orderRow = document.createElement("tr");
-        orderRow.innerHTML=`<td>${rows[i].id}</td><td>${rows[i].is_paid_by_card === 0? "Да": "Нет"}</td><td>${rows[i].order_date}</td>`
+        orderRow.innerHTML=`<td>${rows[i].id}</td><td>${rows[i].is_paid_by_card === 0 ? "Да" : "Нет"}</td><td>${rows[i].order_date}</td>`
         orderHistory.appendChild(orderRow)
     }
 })
-addButton.addEventListener("click", () => {
-    addProductToReceipt().then(r => r)
+
+addButton.addEventListener("click", async () => {
+    await addProductToReceipt()
     if (isFirstOrderedItem) {
-        createOrder()
         isFirstOrderedItem = false
     }
 })
 
-cashPainButton.addEventListener("click", () => {
-
+cashPainButton.addEventListener("click", async () => {
     receiptTbody.innerHTML = ""
     price = 0
 
+    await createOrder();
+
     const orderRow = document.createElement("tr");
-    db.all('SELECT id, is_paid_by_card, order_date FROM orders', (error, rows) =>{
+    await db.all('SELECT id, is_paid_by_card, order_date FROM orders ORDER BY id DESC LIMIT 1', (error, rows) => {
         if (error) {
             console.error(error)
             return;
         }
-        for (let i = 0; i < rows.length; i++) {
-            orderRow.innerHTML=`<td>${rows[i].id}</td><td>Да</td><td>${rows[i].order_date}</td>`
-        }
+        orderRow.innerHTML = `<td>${rows[0].id}</td><td>Да</td><td>${rows[0].order_date}</td>`
+        orderHistory.appendChild(orderRow)
     })
-    orderHistory.appendChild(orderRow)
 
     document.querySelector(".addition-input-quantity").value = 1;
     receiptPrice.innerHTML = 0
 })
 
-cardPainButton.addEventListener("click", () => {
-
+cardPainButton.addEventListener("click", async () => {
     receiptTbody.innerHTML = ""
     price = 0
 
+    await createOrder();
+
     const orderRow = document.createElement("tr");
-    db.all('SELECT id, is_paid_by_card, order_date FROM orders', (error, rows) =>{
+    await db.all('SELECT id, is_paid_by_card, order_date FROM orders ORDER BY id DESC LIMIT 1', (error, rows) => {
         if (error) {
             console.error(error)
             return;
         }
-        for (let i = 0; i < rows.length; i++) {
-            orderRow.innerHTML=`<td>${rows[i].id}</td><td>Нет</td><td>${rows[i].order_date}</td>`
-        }
+        orderRow.innerHTML = `<td>${rows[0].id}</td><td>Нет</td><td>${rows[0].order_date}</td>`
+        orderHistory.appendChild(orderRow)
     })
-    orderHistory.appendChild(orderRow)
 
     document.querySelector(".addition-input-quantity").value = 1;
     receiptPrice.innerHTML = 0
 })
 
 isFirstOrderedItem = receiptTbody.childNodes.length === 0;
-

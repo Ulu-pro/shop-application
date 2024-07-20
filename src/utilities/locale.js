@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-fs.readFile('./preferences.json', 'utf8', (err, data) => {
+fs.readFile('./src/preferences.json', 'utf8', (err, data) => {
   if (err) {
     console.error('Error reading preferences file:', err);
     return;
@@ -8,7 +8,7 @@ fs.readFile('./preferences.json', 'utf8', (err, data) => {
 
   try {
     const preferences = JSON.parse(data);
-    const languageFile = `./languages/${preferences.language}.json`;
+    const languageFile = `./${preferences.language}.json`;
 
     fs.readFile(languageFile, 'utf8', (err, data) => {
       if (err) {

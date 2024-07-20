@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title data-key="title"></title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="./assets/logo.png">
 </head>
 <body>
 <main class="main">
@@ -34,18 +35,12 @@
                 </tr>
                 </thead>
                 <tbody class="history-products">
-                <tr>
-                    <td>123</td>
-                    <td>Да</td>
-                    <td>2024-04-05 09:17:11</td>
-                </tr>
                 </tbody>
             </table>
         </div>
     </section>
     <section class="receipt-section">
-        <button data-key="add" class="profile"></button>
-        <button data-key="change" class="change"></button>
+        <button class="change"><a class="setting-link" data-key="settings" href="settings.html"></a></button>
         <div class="receipt">
             <header class="receipt-header">
                 <h2 data-key="receipt"></h2>
@@ -76,7 +71,7 @@
         </div>
     </section>
 </main>
-<script src="render.js"></script>
+<script src="scripts/render.js"></script>
 <script src="utilities/locale.js"></script>
 <script type="module" src="utilities/counter.js"></script>
 <script type="module" src="utilities/currency.js"></script>

@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, Menu} = require('electron');
 const path = require('path');
 
 const createWindow = () => {
@@ -9,7 +9,8 @@ const createWindow = () => {
       contextIsolation: false,
       nodeIntegration: true,
       nodeIntegrationInWorker: true
-    }
+    },
+    icon: path.join(__dirname, 'icon.ico')
   });
 
   mainWindow.maximize();
@@ -17,6 +18,8 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'))
       .then(() => console.log('File loaded successfully'));
 }
+
+Menu.setApplicationMenu(null);
 
 app.on('ready', createWindow);
 

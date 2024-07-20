@@ -1,5 +1,7 @@
 {
   "name": "shop-application",
+  "product-name": "Application",
+  "author": "Shoxrux",
   "version": "1.0.0",
   "description": "The Shop Application",
   "main": "src/app.js",
@@ -7,12 +9,12 @@
     "start": "electron ."
   },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "devDependencies": {
     "electron": "^29.2.0"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
     "sqlite3": "^5.1.7"
   }
 }
